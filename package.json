@@ -1,0 +1,75 @@
+{
+  "name": "connect-ai-local",
+  "displayName": "Connect AI (Local)",
+  "description": "Ollama 기반 로컬 AI 채팅 + SQLite DB 조회 — 100% 오프라인",
+  "version": "0.1.0",
+  "license": "MIT",
+  "publisher": "Longpae",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["AI", "Other"],
+  "activationEvents": [
+    "onCommand:connectAi.openChat",
+    "onCommand:connectAi.queryDb"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "connectAi.openChat",
+        "title": "Connect AI: 채팅 열기"
+      },
+      {
+        "command": "connectAi.queryDb",
+        "title": "Connect AI: DB 조회"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "connectAi.openChat",
+        "key": "ctrl+shift+a",
+        "mac": "cmd+shift+a"
+      }
+    ],
+    "configuration": {
+      "title": "Connect AI",
+      "properties": {
+        "connectAi.ollamaUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:11434",
+          "description": "Ollama 서버 주소"
+        },
+        "connectAi.model": {
+          "type": "string",
+          "default": "llama3",
+          "description": "사용할 Ollama 모델명"
+        },
+        "connectAi.timeoutSec": {
+          "type": "number",
+          "default": 30,
+          "description": "Ollama 응답 타임아웃 (초)"
+        },
+        "connectAi.dbPath": {
+          "type": "string",
+          "default": "",
+          "description": "SQLite DB 파일 경로 (비워두면 워크스페이스에서 자동 탐색)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.24.0",
+    "typescript": "^5.3.3"
+  }
+}

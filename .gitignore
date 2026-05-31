@@ -1,0 +1,5 @@
+out/
+node_modules/
+*.vsix
+*.db
+.vscode/settings.json
