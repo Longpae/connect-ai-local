@@ -41,6 +41,19 @@ code --install-extension connect-ai-local-0.1.0.vsix
 
 채팅 패널 하단의 SQL 입력창에 쿼리를 입력하고 **DB 조회** 버튼을 눌러도 됩니다.
 
+### DB 조회 예시
+
+```sql
+-- 전체 테이블 목록
+SELECT name FROM sqlite_master WHERE type='table';
+
+-- 최근 고객 20명
+SELECT * FROM 고객 ORDER BY 등록일 DESC LIMIT 20;
+
+-- 이름으로 검색
+SELECT * FROM 고객 WHERE 이름 LIKE '%김%';
+```
+
 ## 설정
 
 ```jsonc
